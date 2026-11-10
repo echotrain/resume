@@ -5,6 +5,9 @@
 /cover/
 *.coverdata
 
+# The generated static site (built by "mix resume.build", deployed by CI).
+/output/
+
 # The directory Mix downloads your dependencies sources to.
 /deps/
 /.fetch
@@ -41,6 +44,7 @@ excoveralls.html
 .expert/
 .lexical/
 .claude/settings.local.json
+.claude/notes/
 .claude/*.sh
 .opencode/
 .vscode/
