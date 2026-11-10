@@ -1,0 +1,145 @@
+{
+  "name": "Josh Anderson",
+  "title": "Senior Software Engineer",
+  "links": [
+    {
+      "label": "linkedin.com/in/joshuabairanderson",
+      "url": "https://www.linkedin.com/in/joshuabairanderson"
+    },
+    {
+      "label": "github.com/echotrain",
+      "url": "https://github.com/echotrain"
+    }
+  ],
+  "summary": "Senior Software Engineer with 8+ years building subscription, billing, and payment platforms, event-driven backends, and multi-region distributed systems, primarily in Elixir. Leads projects from discovery to production with cross-functional teams, most recently the monetization platform behind every onX subscription.",
+  "experience": [
+    {
+      "company": "onX",
+      "blurb": "GPS navigation and mapping apps (Hunt, Offroad, Backcountry, Fish) for millions of outdoor adventurers.",
+      "roles": [
+        {
+          "title": "Senior Software Engineer, Growth Domain",
+          "start": "2024-09",
+          "end": "2026-09",
+          "highlights": [
+            {
+              "lead": "Off-store subscription purchasing:",
+              "text": "Built the Stripe purchasing APIs behind web express pay (Apple Pay, Google Pay, Stripe Checkout, intro offers, coupons) and the non-app-store purchase option on iOS and Android, directly increasing profit margins on every onX subscription."
+            },
+            {
+              "lead": "Core monetization platform:",
+              "text": "Architected and delivered the refactored system of record for purchases, payment profiles, memberships, and entitlements (Elixir, Phoenix, Oban Pro, PostgreSQL, GCP Pub/Sub), from discovery through phased GA, while also delivering new features (Toyota and Ford partnerships, OxR SOS integration). It now handles 100% of subscription read/write traffic company-wide."
+            },
+            {
+              "lead": "380M+ record migration:",
+              "text": "Led the backfill of legacy purchase data from five gateways (Apple, Google, Stripe, redemptions, trials) into a modernized schema, using batched Oban Pro workflows across separate data stores, and reached 99.999% reconciliation accuracy on historical transactions."
+            },
+            "Designed and implemented the Stripe purchasing engine: payment intent endpoints, webhook handlers, and 12+ orchestrated workflows covering the full membership lifecycle (purchase, renew, upgrade, crossgrade, downgrade, resume, cancel, expiration).",
+            "Championed Oban Pro as the core event-driven job-processing architecture, using its dynamic concurrency control, durable workflow composition, and multi-cluster distributed processing.",
+            "Drove end-to-end observability of the platform for GA readiness: custom OpenTelemetry distributed tracing of Oban Pro workflows, structured GCP logging, Grafana dashboards, and Prometheus and Sentry alerting.",
+            "Integrated downstream systems through Pub/Sub pipelines and CDC feeds, retaining full integrity of analytics, user traits, and notifications.",
+            "Provisioned backend infrastructure through Atlantis Terraform PR automation, including multi-region CockroachDB scaling and GCP secrets management, and owned weekly cross-functional rollout communications to leadership.",
+            "Led early adoption of AI-assisted engineering, integrating Claude, Codex, and Copilot into developer workflows."
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Travelpass Group",
+      "blurb": "Online travel booker and software company building community and trip-planning tools.",
+      "roles": [
+        {
+          "title": "Senior Software Engineer, Squad Lead",
+          "start": "2022-03",
+          "end": "2024-08",
+          "highlights": [
+            "Achieved 99.99% uptime across core systems processing $1B in hotel bookings annually.",
+            "Cut average hotel rate search response from ~10s to ~3s, saving an estimated 800+ hours of combined search time daily.",
+            "Led a team of junior developers building an in-house CMS for real-time hotel content overrides.",
+            "Contributed to the rebuild of the core hotel bookings engine, from a Ruby on Rails monolith to an Elixir umbrella app.",
+            "Built a resilient data collection system for metrics and reporting on AWS Kinesis, Lambda, and Snowflake.",
+            "Migrated the in-house image service to Cloudflare Images CDN, improving delivery speeds for 3.2M+ hotel images.",
+            "Added AI image moderation, classification, and sentiment tagging with AWS Rekognition and OpenAI Assistants."
+          ]
+        },
+        {
+          "title": "Senior Software Engineer",
+          "start": "2021-09",
+          "end": "2022-03",
+          "highlights": [
+            "Developed and patented \"Assembler\", which normalizes thousands of provider mappings into 79,000+ standardized hotel records.",
+            "Designed and maintained content import and delivery pipelines (Golang, Elixir, PostgreSQL, GraphQL), and took imports from monthly and weekly release cycles to daily scheduled jobs.",
+            "Bulk-migrated standard hotel records to a refactored schema with zero critical errors or data loss.",
+            "Improved observability with DataDog, Honeybadger, and Splunk."
+          ]
+        },
+        {
+          "title": "Software Developer",
+          "start": "2019-04",
+          "end": "2021-09",
+          "highlights": [
+            "Led the migration of multiple microservices to AWS Lambda, contributing in part to a 25% reduction in overall tech spend.",
+            "Collaborated on re-architecting the content pipeline with Docker and Terraform, and mentored junior developers."
+          ]
+        },
+        {
+          "title": "Junior Software Developer",
+          "start": "2018-06",
+          "end": "2019-04",
+          "highlights": [
+            "Assisted in migrating hotel search to AWS CloudSearch, and added CloudFront CDN support to the image service."
+          ]
+        },
+        {
+          "title": "Software Development Intern",
+          "start": "2017-08",
+          "end": "2018-06",
+          "highlights": [
+            "Built an automated system that assigns brand attribution to all standard hotel records."
+          ]
+        }
+      ]
+    }
+  ],
+  "technologies": [
+    {
+      "label": "Languages",
+      "items": ["Elixir", "Golang", "Python", "Erlang", "Rust", "TypeScript", "React", "JavaScript", "Ruby on Rails", "C++"]
+    },
+    {
+      "label": "Data Store",
+      "items": ["PostgreSQL", "MySQL", "CockroachDB", "Oban Pro", "Ecto", "Redis", "MongoDB", "Snowflake", "Cloudflare"]
+    },
+    {
+      "label": "Data Tech",
+      "items": ["GraphQL", "REST", "Broadway", "Docker", "OpenTelemetry", "Prometheus", "Sentry", "AppSignal", "ElasticSearch"]
+    },
+    {
+      "label": "GCP",
+      "items": ["Pub/Sub", "CloudSQL", "BigQuery", "GDC", "GKE", "Looker", "Dataform", "Dataflow", "Firebase", "CloudBuild", "Trace Explorer"]
+    },
+    {
+      "label": "AWS",
+      "items": ["Kinesis", "Lambda", "CloudSearch", "Rekognition", "RDS", "S3", "SQS", "OpenSearch", "IAM", "CloudWatch", "CloudFront"]
+    },
+    {
+      "label": "Other",
+      "items": ["Stripe", "Claude", "Codex", "Tidewave MCP", "Phoenix", "LiveView", "Terraform", "Kubernetes", "Bash", "Git", "Linux", "Regex"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science - BS, Computer Science",
+      "school": "Utah Valley University",
+      "date": "Spring 2019"
+    }
+  ],
+  "patents": [
+    {
+      "title": "Generating a Composite Listing for a Lodging Facility",
+      "number": "US-11783380-B1",
+      "issued": "Oct 10, 2023",
+      "url": "https://patents.google.com/patent/US11783380B1"
+    }
+  ]
+}
