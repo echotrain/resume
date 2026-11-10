@@ -1,0 +1,54 @@
+# The directory Mix will write compiled artifacts to.
+/_build/
+
+# If you run "mix test --cover", coverage assets end up here.
+/cover/
+*.coverdata
+
+# The directory Mix downloads your dependencies sources to.
+/deps/
+/.fetch
+
+# Where third-party dependencies like ExDoc output generated docs.
+/doc/
+
+# Temporary files, for example, from tests.
+/tmp/
+.mix_tasks
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+*.ez
+
+# Ignore package tarball (built via "mix hex.build").
+resume-*.tar
+
+# Elixir files
+/priv/plts/*.plt
+/priv/plts/*.plt.hash
+/log
+excoveralls.json
+excoveralls.html
+
+# private config
+/config/*.private.exs
+
+# Local Dev Tools
+.elixir_ls/
+.elixir-tools/
+.expert/
+.lexical/
+.claude/settings.local.json
+.claude/*.sh
+.opencode/
+.vscode/
+*.DS_Store/
+.idea/
+*.iml
+
+# ENV Files
+.env
+.env.local
+

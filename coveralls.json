@@ -1,0 +1,16 @@
+{
+    "skip_files": [
+        "deps/",
+        "lib/mix/tasks/*",
+        "lib/release_tasks/",
+        "src/",
+        "test/"
+    ],
+    "coverage_options": {
+        "treat_no_relevant_lines_as_covered": true,
+        "html_filter_full_covered": true
+    },
+    "terminal_options": {
+        "file_column_width": 120
+    }
+}
