@@ -1,9 +1,22 @@
 name: Resume site
 
+# A push or pull request that only touches these paths cannot change the site,
+# so it does not run the workflow. A change that also touches any other file
+# runs it as usual, and "Run workflow" in the Actions tab always works.
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - README.md
+      - CLAUDE.md
+      - AGENTS.md
+      - .claude/**
   pull_request:
+    paths-ignore:
+      - README.md
+      - CLAUDE.md
+      - AGENTS.md
+      - .claude/**
   workflow_dispatch:
 
 permissions:
