@@ -50,6 +50,9 @@ defmodule Resume.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      # HEEx templates and function components only; no endpoint or server is started.
+      {:phoenix_live_view, "~> 1.2"},
+
       # Dev/Test Only Deps
       {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4.8", only: [:dev, :test], runtime: false},
