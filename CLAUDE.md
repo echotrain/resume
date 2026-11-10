@@ -19,7 +19,15 @@ This repo is a small project for generating a static webpage version of my profe
 ```sh
 # Native
 iex -S mix   # Start with IEx shell
+
+# Build the static site from priv/resume.json into output/
+# (in dev, output/assets is a symlink to assets/; pass --copy for a self-contained build)
+mix resume.build
+open output/index.html
 ```
+
+The page is rendered with `Phoenix.Component`/HEEx only (no endpoint or server). Phone and email must never
+be added to `priv/resume.json`, the templates, or test fixtures: the print dialog collects them at print time.
 
 ### Testing
 
