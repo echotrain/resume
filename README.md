@@ -30,25 +30,21 @@ browser refresh with no rebuild. Rebuild only after changing `priv/resume.json` 
 | `assets/` | Hand-written CSS and JS, plus self-hosted Montserrat (SIL OFL). |
 | `.github/workflows/pages.yml` | Tests, builds, checks the page count, deploys to Pages. |
 
-## Content notes
+## Easter egg (spike)
 
-- Months are `"YYYY-MM"`. Leave a role's `end` out (or `null`) for a current role; it renders as "Present".
-- A highlight is either a string or `{"lead": "Bold lead-in:", "text": "..."}`.
-- Roles are nested under their employer, so several positions at one company render as one block with the
-  combined tenure.
+`game/index.html` boots this same Mix app in the browser with [Popcorn](https://hexdocs.pm/popcorn/), a BEAM
+compiled to WebAssembly. `Resume.Application` starts a task that writes a greeting into the page from Elixir.
 
-## Privacy
+```sh
+MIX_ENV=prod mix site.build   # resume page + browser runtime in output/game/out
+MIX_ENV=prod mix popcorn.dev --dir output --out-dir output/game/out
+# then open http://localhost:4000/game/index.html
+```
 
-Phone and email are never stored in this repo or rendered into the page; tests enforce this. The Print button
-opens a dialog where they can be typed in for that one printed copy. They are held in the page only until
-printing finishes.
+The runtime needs cross-origin isolation headers, which GitHub Pages cannot send. `game/coi-serviceworker.js`
+(vendored from gzuidhof/coi-serviceworker, MIT) adds them in the browser and reloads the page once on first
+visit. Its scope is the `game/` folder, so the resume page is unaffected. Opening the page as a local file does
+not work, because service workers need `http://localhost` or HTTPS.
 
-## Printing
-
-Print styles target US Letter and at most two pages. CI prints the page with headless Chrome and fails if it
-runs past two pages; the resulting PDF is attached to each workflow run as the `resume-pdf` artifact.
-
-## Deployment
-
-Pushing to `main` runs the workflow and deploys. One-time setup: in the repository settings, under Pages, set
-the source to "GitHub Actions".
+Build with `MIX_ENV=prod`: Popcorn packages every compiled dependency in the build directory, and the dev
+environment has many more of them.

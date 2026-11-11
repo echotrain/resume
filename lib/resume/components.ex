@@ -54,9 +54,57 @@ defmodule Resume.Components do
   def toolbar(assigns) do
     ~H"""
     <nav class="toolbar" aria-label="Page actions">
+      <a class="button" href="game/index.html">Easter egg</a>
       <button type="button" id="theme-toggle" aria-pressed="false">Dark mode</button>
       <button type="button" id="print-button" class="primary">Print / Save as PDF</button>
     </nav>
+    """
+  end
+
+  @doc """
+  The easter egg page, served from `game/`.
+
+  It lives on its own page because the Elixir runtime needs cross-origin
+  isolation. `coi-serviceworker.js` provides that on hosts that cannot send the
+  headers, and its scope is the directory it is served from, so the resume page
+  itself is unaffected.
+  """
+  attr :resume, Content, required: true
+
+  def game_page(assigns) do
+    ~H"""
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Easter egg | {@resume.name}</title>
+        <link rel="stylesheet" href="../assets/css/resume.css" />
+        <script src="coi-serviceworker.js">
+        </script>
+      </head>
+      <body>
+        <nav class="toolbar" aria-label="Page actions">
+          <a class="button" href="../index.html">Back to the resume</a>
+        </nav>
+        <main class="page">
+          <header class="masthead">
+            <div>
+              <h1>Easter egg</h1>
+              <p class="headline">Elixir, running in your browser</p>
+            </div>
+          </header>
+          <section>
+            <h2>Status</h2>
+            <p id="status">Starting the Elixir runtime…</p>
+            <p id="details" class="blurb"></p>
+          </section>
+        </main>
+        <script type="module" src="../assets/js/game.js">
+        </script>
+      </body>
+    </html>
     """
   end
 

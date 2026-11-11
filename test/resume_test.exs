@@ -55,6 +55,21 @@ defmodule ResumeTest do
     end
 
     @tag :tmp_dir
+    test "writes the easter egg page beside its service worker", %{tmp_dir: tmp_dir} do
+      assert :ok = Resume.build(tmp_dir, Fixtures.content())
+
+      game = File.read!(Path.join(tmp_dir, "game/index.html"))
+      assert game =~ ~s(<script src="coi-serviceworker.js">)
+      assert File.exists?(Path.join(tmp_dir, "game/coi-serviceworker.js"))
+
+      for [_match, asset] <- Regex.scan(~r/(?:href|src)="\.\.\/(assets\/[^"]+)"/, game) do
+        assert File.exists?(Path.join(tmp_dir, asset)), "missing #{asset}"
+      end
+
+      assert File.read!(Path.join(tmp_dir, "index.html")) =~ ~s(href="game/index.html")
+    end
+
+    @tag :tmp_dir
     test "links to the source assets on request", %{tmp_dir: tmp_dir} do
       assert :ok = Resume.build(tmp_dir, Fixtures.content(), assets: :link)
 

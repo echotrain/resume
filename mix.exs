@@ -20,7 +20,8 @@ defmodule Resume.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      mod: {Resume.Application, []}
     ]
   end
 
@@ -28,6 +29,9 @@ defmodule Resume.MixProject do
     [
       check: ["format --check-formatted", "credo --strict --min-priority=higher", "test"],
       f: "format",
+      # The full deployable site: the resume page plus the browser build of the
+      # easter egg. Run with MIX_ENV=prod so dev-only deps are not packaged.
+      "site.build": ["resume.build --copy", "popcorn.cook --out-dir output/game/out"],
       "test.html": "coveralls.html",
       "test.json": "coveralls.json"
     ]
@@ -50,8 +54,12 @@ defmodule Resume.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # HEEx templates and function components only; no endpoint or server is started.
-      {:phoenix_live_view, "~> 1.2"},
+      # HEEx templates and function components only. `runtime: false` keeps the
+      # Phoenix applications from being started, natively or in the browser.
+      {:phoenix_live_view, "~> 1.2", runtime: false},
+
+      # Spike: runs Elixir in the browser on a BEAM compiled to WebAssembly.
+      {:popcorn, "~> 1.0"},
 
       # Dev/Test Only Deps
       {:credo, "~> 1.7.19", only: [:dev, :test], runtime: false},

@@ -134,7 +134,8 @@ a:focus-visible {
   padding: 1rem 0;
 }
 
-button {
+button,
+a.button {
   padding: 0.5em 1em;
   border: 1px solid var(--control-border);
   border-radius: 6px;
@@ -145,8 +146,14 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+a.button {
+  line-height: normal;
+}
+
+button:hover,
+a.button:hover {
   border-color: var(--accent);
+  text-decoration: none;
 }
 
 button.primary {

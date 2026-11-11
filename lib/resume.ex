@@ -18,13 +18,18 @@ defmodule Resume do
   @doc "Reads and decodes a resume content file, raising if it is missing or malformed."
   @spec load!(Path.t()) :: Content.t()
   def load!(path \\ content_path()) do
-    path |> File.read!() |> JSON.decode!() |> Content.from_map()
+    path
+    |> File.read!()
+    |> JSON.decode!()
+    |> Content.from_map()
   end
 
   @doc "Renders the resume to a complete HTML document."
   @spec render(Content.t()) :: iodata()
   def render(%Content{} = content) do
-    %{resume: content} |> Components.page() |> Phoenix.HTML.Safe.to_iodata()
+    %{resume: content}
+    |> Components.page()
+    |> Phoenix.HTML.Safe.to_iodata()
   end
 
   @doc """
@@ -40,8 +45,27 @@ defmodule Resume do
   def build(output_dir \\ @default_output_dir, %Content{} = content \\ load!(), opts \\ []) do
     File.mkdir_p!(output_dir)
     File.write!(Path.join(output_dir, "index.html"), render(content))
+    write_game_page(Path.join(output_dir, "game"), content)
     place_assets(Keyword.get(opts, :assets, :copy), Path.join(output_dir, "assets"))
   end
+
+  @doc "Renders the easter egg page to a complete HTML document."
+  @spec render_game(Content.t()) :: iodata()
+  def render_game(%Content{} = content) do
+    %{resume: content}
+    |> Components.game_page()
+    |> Phoenix.HTML.Safe.to_iodata()
+  end
+
+  # The service worker must sit next to the page: its scope is its own directory.
+  # The Elixir runtime itself is added to `game/out` by `mix popcorn.cook`.
+  defp write_game_page(game_dir, content) do
+    File.mkdir_p!(game_dir)
+    File.write!(Path.join(game_dir, "index.html"), render_game(content))
+    File.cp!(service_worker_path(), Path.join(game_dir, "coi-serviceworker.js"))
+  end
+
+  defp service_worker_path, do: Application.app_dir(:resume, "priv/game/coi-serviceworker.js")
 
   # The old target is removed first: copying into a leftover symlink would
   # write the assets onto themselves. `rm_rf!` removes a link, not its target.

@@ -49,8 +49,13 @@ jobs:
       - name: Format, lint and test
         run: mix check
 
+      # The resume page, then the easter egg's Elixir runtime for the browser.
+      # Pages cannot negotiate the pre-compressed .br/.gz copies, so drop them.
       - name: Build the site
-        run: mix resume.build --copy
+        run: |
+          mix site.build
+          find output/game/out -type f \( -name '*.br' -o -name '*.gz' \) -delete
+          du -sh output output/game/out
         env:
           MIX_ENV: prod
 
