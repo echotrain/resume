@@ -12,7 +12,7 @@ defmodule Resume.Application do
   @impl Application
   def start(_type, _args) do
     children = [
-      {Task, &Resume.EasterEgg.greet/0}
+      Resume.Game.Server
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Resume.Supervisor)

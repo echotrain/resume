@@ -1,0 +1,237 @@
+/*
+ * Styles for the easter egg page. It reuses resume.css for the sheet, the
+ * colour tokens and Montserrat, so the game looks like part of the resume:
+ * the snake and its food are the resume's blue square bullets.
+ */
+
+.game {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18rem;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+/* Score */
+
+.hud {
+  display: flex;
+  gap: 1.75rem;
+  margin: 0;
+  text-align: right;
+}
+
+.hud dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.hud dd {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+/* Board */
+
+.board {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  aspect-ratio: 1;
+  border: 2px solid var(--accent-soft);
+  background: var(--canvas);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.board-message {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+.cell {
+  margin: 10%;
+  background: var(--accent);
+}
+
+.cell.head {
+  margin: 2%;
+}
+
+.cell.food {
+  margin: 30%;
+  animation: pulse 0.9s ease-in-out infinite alternate;
+}
+
+.grid.is-over .snake {
+  opacity: 0.4;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell.food {
+    animation: none;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  background: color-mix(in srgb, var(--sheet) 82%, transparent);
+  text-align: center;
+}
+
+.overlay strong {
+  color: var(--accent);
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.overlay span {
+  color: var(--muted);
+}
+
+/* Controls */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 30rem;
+  margin: 1rem 0 0.75rem;
+}
+
+.controls .primary {
+  min-width: 8rem;
+}
+
+.dpad {
+  display: grid;
+  grid-template-areas:
+    ". up ."
+    "left down right";
+  gap: 0.35rem;
+}
+
+.dpad button {
+  width: 3.2rem;
+  height: 3.2rem;
+  padding: 0;
+  touch-action: manipulation;
+}
+
+.dpad [data-turn="up"] {
+  grid-area: up;
+}
+
+.dpad [data-turn="left"] {
+  grid-area: left;
+}
+
+.dpad [data-turn="down"] {
+  grid-area: down;
+}
+
+.dpad [data-turn="right"] {
+  grid-area: right;
+}
+
+/* A mouse and keyboard make the steering buttons redundant. */
+@media (hover: hover) and (pointer: fine) {
+  .dpad {
+    display: none;
+  }
+}
+
+/* BEAM console */
+
+.beam h2 {
+  margin-top: 0;
+}
+
+.beam h3 {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.stats {
+  margin: 0.75rem 0 0;
+}
+
+.stats div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--accent-soft);
+}
+
+.stats dt {
+  color: var(--muted);
+}
+
+.stats dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.log {
+  margin-top: 0.35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.log li {
+  overflow-wrap: anywhere;
+}
+
+.log li:first-child {
+  color: var(--accent);
+}
+
+.log .empty {
+  color: var(--muted);
+}
+
+@media screen and (max-width: 760px) {
+  .game {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .board,
+  .controls {
+    max-width: none;
+  }
+}

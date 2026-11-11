@@ -1,4 +1,5 @@
 // Loaded in <head> without defer so the theme is applied before first paint.
+// The game page loads it too, for the theme only; it has no toggle or print dialog.
 (function () {
   "use strict";
 
@@ -52,6 +53,8 @@
 
   function setUpThemeToggle() {
     var toggle = document.getElementById("theme-toggle");
+    if (!toggle) return;
+
     applyTheme(root.getAttribute("data-theme"));
 
     toggle.addEventListener("click", function () {
@@ -64,6 +67,7 @@
   function setUpPrinting() {
     var dialog = document.getElementById("print-dialog");
     var form = document.getElementById("print-form");
+    if (!dialog) return;
 
     document.getElementById("print-button").addEventListener("click", function () {
       if (typeof dialog.showModal === "function") {

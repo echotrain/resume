@@ -200,6 +200,15 @@ h1 {
   line-height: 1.15;
 }
 
+/* The easter egg: the name is a link that gives no sign of being one. */
+a.egg,
+a.egg:hover,
+a.egg:focus-visible {
+  color: inherit;
+  text-decoration: none;
+  cursor: text;
+}
+
 .headline {
   color: var(--muted);
   font-size: 1.65rem;

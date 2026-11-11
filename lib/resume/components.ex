@@ -54,7 +54,6 @@ defmodule Resume.Components do
   def toolbar(assigns) do
     ~H"""
     <nav class="toolbar" aria-label="Page actions">
-      <a class="button" href="game/index.html">Easter egg</a>
       <button type="button" id="theme-toggle" aria-pressed="false">Dark mode</button>
       <button type="button" id="print-button" class="primary">Print / Save as PDF</button>
     </nav>
@@ -68,6 +67,10 @@ defmodule Resume.Components do
   isolation. `coi-serviceworker.js` provides that on hosts that cannot send the
   headers, and its scope is the directory it is served from, so the resume page
   itself is unaffected.
+
+  This is only the static frame. The elements with the ids `board`, `hud`,
+  `action` and `console` start empty and are filled in the browser by
+  `Resume.Game.View`, driven by `Resume.Game.Server`.
   """
   attr :resume, Content, required: true
 
@@ -79,8 +82,11 @@ defmodule Resume.Components do
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="noindex" />
-        <title>Easter egg | {@resume.name}</title>
+        <title>Bullet Points | {@resume.name}</title>
         <link rel="stylesheet" href="../assets/css/resume.css" />
+        <link rel="stylesheet" href="../assets/css/game.css" />
+        <script src="../assets/js/resume.js">
+        </script>
         <script src="coi-serviceworker.js">
         </script>
       </head>
@@ -91,15 +97,39 @@ defmodule Resume.Components do
         <main class="page">
           <header class="masthead">
             <div>
-              <h1>Easter egg</h1>
-              <p class="headline">Elixir, running in your browser</p>
+              <h1>Bullet Points</h1>
+              <p class="headline">A snake game in Elixir, running in your browser</p>
             </div>
+            <div id="hud"></div>
           </header>
-          <section>
-            <h2>Status</h2>
-            <p id="status">Starting the Elixir runtime…</p>
-            <p id="details" class="blurb"></p>
-          </section>
+          <div class="game">
+            <section class="play" aria-label="Game">
+              <div id="board" class="board">
+                <p id="status" class="board-message">Starting the Elixir runtime…</p>
+              </div>
+              <p id="details" class="blurb"></p>
+              <div class="controls">
+                <div id="action"></div>
+                <div class="dpad" aria-label="Steering">
+                  <button type="button" data-turn="up" aria-label="Up">▲</button>
+                  <button type="button" data-turn="left" aria-label="Left">◀</button>
+                  <button type="button" data-turn="down" aria-label="Down">▼</button>
+                  <button type="button" data-turn="right" aria-label="Right">▶</button>
+                </div>
+              </div>
+              <p class="blurb">
+                Steer with the arrow keys or WASD, and press space to start or pause. On a phone, swipe
+                across the board or use the buttons.
+              </p>
+            </section>
+            <aside class="beam" aria-label="BEAM console">
+              <h2>BEAM console</h2>
+              <p class="blurb">
+                Live from the Erlang VM running this game on your device, compiled to WebAssembly.
+              </p>
+              <div id="console"></div>
+            </aside>
+          </div>
         </main>
         <script type="module" src="../assets/js/game.js">
         </script>
@@ -114,7 +144,7 @@ defmodule Resume.Components do
     ~H"""
     <header class="masthead">
       <div>
-        <h1>{@resume.name}</h1>
+        <h1><a class="egg" href="game/index.html">{@resume.name}</a></h1>
         <p class="headline">{@resume.title}</p>
       </div>
       <ul class="contact">
