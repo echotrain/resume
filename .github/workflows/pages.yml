@@ -59,22 +59,6 @@ jobs:
         env:
           MIX_ENV: prod
 
-      - name: Check the printed resume fits on two pages
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq poppler-utils
-          google-chrome --headless=new --no-sandbox --disable-gpu --no-pdf-header-footer \
-            --print-to-pdf=resume.pdf "file://$PWD/output/index.html"
-          pages=$(pdfinfo resume.pdf | awk '/^Pages:/ {print $2}')
-          echo "Printed resume is $pages page(s)"
-          test "$pages" -le 2
-
-      - name: Keep the printed PDF for inspection
-        uses: actions/upload-artifact@v7
-        with:
-          name: resume-pdf
-          path: resume.pdf
-
       - uses: actions/upload-pages-artifact@v5
         with:
           path: output

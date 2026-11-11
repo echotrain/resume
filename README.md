@@ -28,7 +28,7 @@ browser refresh with no rebuild. Rebuild only after changing `priv/resume.json` 
 | `lib/resume/dates.ex` | Month formatting and tenure ("7 yrs"). |
 | `lib/resume/components.ex` | HEEx function components for the page. |
 | `assets/` | Hand-written CSS and JS, plus self-hosted Montserrat (SIL OFL). |
-| `.github/workflows/pages.yml` | Tests, builds, checks the page count, deploys to Pages. |
+| `.github/workflows/pages.yml` | Tests, builds and deploys to Pages. |
 
 ## Easter egg (spike)
 
