@@ -47,6 +47,7 @@ defmodule Resume.Components do
             </div>
           </div>
         </main>
+        <.arcade_door />
         <.print_dialog />
       </body>
     </html>
@@ -59,6 +60,19 @@ defmodule Resume.Components do
       <button type="button" id="theme-toggle" aria-pressed="false">Dark mode</button>
       <button type="button" id="print-button" class="primary">Print / Save as PDF</button>
     </nav>
+    """
+  end
+
+  @doc """
+  The second way into the arcade, below the sheet: a button holding only a
+  joystick emoji. The first is the name in the masthead, which does not look
+  like a link at all.
+  """
+  def arcade_door(assigns) do
+    ~H"""
+    <footer class="door">
+      <a class="button" href="arcade/index.html" aria-label="Arcade">&#x1F579;&#xFE0F;</a>
+    </footer>
     """
   end
 

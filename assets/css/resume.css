@@ -215,7 +215,7 @@ h1 {
   line-height: 1.15;
 }
 
-/* The way into the arcade: the name is a link that gives no sign of being one. */
+/* One way into the arcade: the name is a link that gives no sign of being one. */
 a.egg,
 a.egg:hover,
 a.egg:focus-visible {
@@ -397,6 +397,21 @@ strong {
   font-size: 0.85rem;
 }
 
+/* The other way in: a lone emoji button below the sheet, the size of the name. */
+
+.door {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.25rem;
+}
+
+.door .button {
+  padding: 0.2em 0.35em;
+  border-radius: 10px;
+  font-size: 3rem;
+  line-height: 1;
+}
+
 /* Print dialog */
 
 dialog {
@@ -457,7 +472,8 @@ dialog input {
     padding: 0 0.5rem 2rem;
   }
 
-  h1 {
+  h1,
+  .door .button {
     font-size: 2.2rem;
   }
 
@@ -503,6 +519,7 @@ dialog input {
   }
 
   .toolbar,
+  .door,
   dialog {
     display: none !important;
   }

@@ -55,7 +55,7 @@ defmodule ResumeTest do
     end
 
     @tag :tmp_dir
-    test "writes the arcade page beside its service worker", %{tmp_dir: tmp_dir} do
+    test "writes the arcade page beside its service worker, with both ways into it", %{tmp_dir: tmp_dir} do
       assert :ok = Resume.build(tmp_dir, Fixtures.content())
 
       arcade = File.read!(Path.join(tmp_dir, "arcade/index.html"))
@@ -66,7 +66,9 @@ defmodule ResumeTest do
         assert File.exists?(Path.join(tmp_dir, asset)), "missing #{asset}"
       end
 
-      assert File.read!(Path.join(tmp_dir, "index.html")) =~ ~s(href="arcade/index.html")
+      resume = File.read!(Path.join(tmp_dir, "index.html"))
+      assert resume =~ ~s(<a class="egg" href="arcade/index.html">)
+      assert resume =~ ~s(<a class="button" href="arcade/index.html" aria-label="Arcade">)
     end
 
     @tag :tmp_dir
