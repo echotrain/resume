@@ -40,6 +40,14 @@ defmodule Resume.ComponentsTest do
     end
   end
 
+  describe "Resume.Components.technologies/1" do
+    test "labels each group ahead of its comma-separated items" do
+      html = render(&Components.technologies/1, %{groups: Fixtures.content().technologies})
+
+      assert html =~ ~r{<span class="label">Languages:</span>\s+Elixir, Erlang}
+    end
+  end
+
   describe "Resume.Components.masthead/1" do
     test "links the profiles and leaves the contact slots empty" do
       html = render(&Components.masthead/1, %{resume: Fixtures.content()})

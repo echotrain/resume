@@ -11,55 +11,59 @@
       "url": "https://github.com/echotrain"
     }
   ],
-  "summary": "Senior Software Engineer with 8+ years building subscription, billing, and payment platforms, event-driven backends, and multi-region distributed systems, primarily in Elixir. Leads projects from discovery to production with cross-functional teams, most recently the monetization platform behind every onX subscription.",
+  "summary": "Highly skilled Senior Software Engineer with over 8 years experience in backend development, reliable event tracking, and scalable infrastructure for distributed systems. Adept at designing and maintaining robust, performant, and multi-region applications for billing, entitlements, data collection, data migration, real-time reporting, and comprehensive search technologies. Proven ability to lead projects from initial concept and discovery through to production, collaborating with cross-functional teams and project stakeholders, to achieve substantial business growth.",
   "experience": [
     {
       "company": "onX",
-      "blurb": "GPS navigation and mapping apps (Hunt, Offroad, Backcountry, Fish) for millions of outdoor adventurers.",
+      "blurb": "GPS navigation and mapping application tools (Hunt, Offroad, Backcountry, Fish) for millions of outdoor adventurers.",
       "roles": [
         {
-          "title": "Senior Software Engineer, Growth Domain",
+          "title": "Senior Software Engineer",
           "start": "2024-09",
           "end": "2026-09",
           "highlights": [
             {
               "lead": "Off-store subscription purchasing:",
-              "text": "Built the Stripe purchasing APIs behind web express pay (Apple Pay, Google Pay, Stripe Checkout, intro offers, coupons) and the non-app-store purchase option on iOS and Android, directly increasing profit margins on every onX subscription."
+              "text": "Built Stripe Checkout purchasing APIs for web express pay, enabling non-app-store payment option for iOS and Android, providing customers more purchasing autonomy, and directly increasing the profit margin potential of all onX subscriptions."
             },
             {
-              "lead": "Core monetization platform:",
-              "text": "Architected and delivered the refactored system of record for purchases, payment profiles, memberships, and entitlements (Elixir, Phoenix, Oban Pro, PostgreSQL, GCP Pub/Sub), from discovery through phased GA, while also delivering new features (Toyota and Ford partnerships, OxR SOS integration). It now handles 100% of subscription read/write traffic company-wide."
+              "lead": "Core monetization platform rebuild:",
+              "text": "Architected and delivered a refactored system of record for purchases, payment profiles, memberships, entitlements, and subscription lifecycle events - leveraging Elixir, Phoenix LiveView, Oban Pro, PostgreSQL, SpiceDB, and GCP PubSub."
             },
             {
               "lead": "380M+ record migration:",
-              "text": "Led the backfill of legacy purchase data from five gateways (Apple, Google, Stripe, redemptions, trials) into a modernized schema, using batched Oban Pro workflows across separate data stores, and reached 99.999% reconciliation accuracy on historical transactions."
+              "text": "Led the backfill of legacy purchase data across separate payment gateways (Apple, Google, Stripe, internal), into a modernized and extensible data schema, and successfully achieved a rigorous five-nines historical reconciliation accuracy goal (99.999%)."
             },
-            "Designed and implemented the Stripe purchasing engine: payment intent endpoints, webhook handlers, and 12+ orchestrated workflows covering the full membership lifecycle (purchase, renew, upgrade, crossgrade, downgrade, resume, cancel, expiration).",
-            "Championed Oban Pro as the core event-driven job-processing architecture, using its dynamic concurrency control, durable workflow composition, and multi-cluster distributed processing.",
-            "Drove end-to-end observability of the platform for GA readiness: custom OpenTelemetry distributed tracing of Oban Pro workflows, structured GCP logging, Grafana dashboards, and Prometheus and Sentry alerting.",
-            "Integrated downstream systems through Pub/Sub pipelines and CDC feeds, retaining full integrity of analytics, user traits, and notifications.",
-            "Provisioned backend infrastructure through Atlantis Terraform PR automation, including multi-region CockroachDB scaling and GCP secrets management, and owned weekly cross-functional rollout communications to leadership.",
-            "Led early adoption of AI-assisted engineering, integrating Claude, Codex, and Copilot into developer workflows."
+            {
+              "lead": "Championed Oban Pro:",
+              "text": "The core event-driven job-processing framework and pushed fundamental system design architecture decisions: dynamic concurrency control, durable workflow composition, multi-cluster distributed processing, and database-backed coordination."
+            },
+            "Implemented Stripe Payment Intent logic: endpoints, webhook handlers, and 12+ orchestrated workflows covering full subscription lifecycle.",
+            "Drove end-to-end observability: custom OpenTelemetry tracing of Oban Pro workflows, Prometheus + Grafana dashboards, and Sentry alerting.",
+            "Integrated downstream services through GCP PubSub pipelines and CDC feeds, retaining full integrity of analytics, user traits, and notifications.",
+            "Enabled entitlement dissemination of multi-state user role claims through ISO 3166 Alpha-2 geodata validation for IAM required feature access.",
+            "Provisioned backend infrastructure with Atlantis Terraform PR CI/CD, multi-region CockroachDB scaling, and GCP secrets management config.",
+            "Advocated early adoption of AI-assisted engineering initiatives and facilitated Claude, Codex, and Copilot developer workflow integrations."
           ]
         }
       ]
     },
     {
       "company": "Travelpass Group",
-      "blurb": "Online travel booker and software company building community and trip-planning tools.",
+      "blurb": "Online hotel room booker and software company creating trip planning and experience sharing tools for travelers.",
       "roles": [
         {
-          "title": "Senior Software Engineer, Squad Lead",
+          "title": "Senior Software Engineer, Team Lead",
           "start": "2022-03",
           "end": "2024-08",
           "highlights": [
-            "Achieved 99.99% uptime across core systems processing $1B in hotel bookings annually.",
-            "Cut average hotel rate search response from ~10s to ~3s, saving an estimated 800+ hours of combined search time daily.",
-            "Led a team of junior developers building an in-house CMS for real-time hotel content overrides.",
-            "Contributed to the rebuild of the core hotel bookings engine, from a Ruby on Rails monolith to an Elixir umbrella app.",
-            "Built a resilient data collection system for metrics and reporting on AWS Kinesis, Lambda, and Snowflake.",
-            "Migrated the in-house image service to Cloudflare Images CDN, improving delivery speeds for 3.2M+ hotel images.",
-            "Added AI image moderation, classification, and sentiment tagging with AWS Rekognition and OpenAI Assistants."
+            "Achieved 99.99% uptime across all critical core systems and services responsible for processing thousands of daily hotel room bookings.",
+            "Cut P95 performance average for hotel rate search response times from ~10s to ~3s, saving a combined ~800+ hours of daily search time.",
+            "Led team of junior developers in building an in-house Content Management System for facilitating direct real-time hotel content overrides.",
+            "Contributed to rebuild of core hotel bookings engine, modernizing an antiquated Ruby on Rails monolith to a robust Elixir umbrella application.",
+            "Implemented a resilient data collection system for high-accuracy metrics and reporting using AWS Kinesis, AWS Lambda, and Snowflake.",
+            "Migrated internal image service to Cloudflare Images CDN, significantly improving delivery speeds to clients for over 3.2 million hotel images.",
+            "Added user image uploads moderation, classification, and sentiment analysis tagging through AWS Rekognition and OpenAI GPT Assistants."
           ]
         },
         {
@@ -67,10 +71,10 @@
           "start": "2021-09",
           "end": "2022-03",
           "highlights": [
-            "Developed and patented \"Assembler\", which normalizes thousands of provider mappings into 79,000+ standardized hotel records.",
-            "Designed and maintained content import and delivery pipelines (Golang, Elixir, PostgreSQL, GraphQL), and took imports from monthly and weekly release cycles to daily scheduled jobs.",
-            "Bulk-migrated standard hotel records to a refactored schema with zero critical errors or data loss.",
-            "Improved observability with DataDog, Honeybadger, and Splunk."
+            "Developed and patented \"Assembler\", the multi-provider mapping aggregation logic, to standardize and normalize over 79,000+ hotel records.",
+            "Designed and maintained scalable hotel content import and delivery pipelines using Elixir, Golang, PostgreSQL, GraphQL, and AWS Kinesis.",
+            "Enhanced system observability and monitoring by integrating industry leading telemetry tools, such as DataDog, Honeybadger, and Splunk.",
+            "Improved provider hotel content import and update frequency from monthly/weekly release cycles to daily automated Oban cron jobs."
           ]
         },
         {
@@ -78,8 +82,9 @@
           "start": "2019-04",
           "end": "2021-09",
           "highlights": [
-            "Led the migration of multiple microservices to AWS Lambda, contributing in part to a 25% reduction in overall tech spend.",
-            "Collaborated on re-architecting the content pipeline with Docker and Terraform, and mentored junior developers."
+            "Collaborated on the redesign and re-architecture of core content pipelines, leveraging Docker and Terraform for infrastructure orchestration.",
+            "Actively participated in code pairing, junior developer mentoring, and ensuring adherence to engineering org standards and best practices.",
+            "Optimized database queries, and caching mechanisms implemented in Redis, contributing to a 25% reduction in overall AWS tech spend."
           ]
         },
         {
@@ -87,7 +92,9 @@
           "start": "2018-06",
           "end": "2019-04",
           "highlights": [
-            "Assisted in migrating hotel search to AWS CloudSearch, and added CloudFront CDN support to the image service."
+            "Contributed to production development and maintenance of core backend booking and content systems, focusing on scalability and reliability.",
+            "Assisted the migration to AWS CloudSearch for hotel lookup, enabling multiple highly requested search features from product stakeholders.",
+            "Added AWS CloudFront CDN integration to in-house image service, improving hosting, resizing, and delivery performance for all hotel images."
           ]
         },
         {
@@ -95,7 +102,9 @@
           "start": "2017-08",
           "end": "2018-06",
           "highlights": [
-            "Built an automated system that assigns brand attribution to all standard hotel records."
+            "Developed an automated system written in Python to identify and assign brand and parent chain attribution to all standard hotel records.",
+            "Supported senior engineers in the development and maintenance of provider hotel content pipelines, obtaining early exposure to PostgreSQL.",
+            "Gained early hands-on experience with AWS cloud service infrastructure, distributed systems orchestration, and database management."
           ]
         }
       ]
@@ -104,27 +113,88 @@
   "technologies": [
     {
       "label": "Languages",
-      "items": ["Elixir", "Golang", "Python", "Erlang", "Rust", "TypeScript", "React", "JavaScript", "Ruby on Rails", "C++"]
+      "items": [
+        "Elixir",
+        "Golang",
+        "Python",
+        "Erlang",
+        "Rust",
+        "TypeScript",
+        "React",
+        "JavaScript",
+        "Ruby on Rails"
+      ]
     },
     {
       "label": "Data Store",
-      "items": ["PostgreSQL", "MySQL", "CockroachDB", "Oban Pro", "Ecto", "Redis", "MongoDB", "Snowflake", "Cloudflare"]
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "CockroachDB",
+        "Oban Pro",
+        "Ecto",
+        "Redis",
+        "Snowflake",
+        "Cloudflare"
+      ]
     },
     {
       "label": "Data Tech",
-      "items": ["GraphQL", "REST", "Broadway", "Docker", "OpenTelemetry", "Prometheus", "Sentry", "AppSignal", "ElasticSearch"]
+      "items": [
+        "GraphQL",
+        "REST",
+        "Broadway",
+        "Docker",
+        "OpenTelemetry",
+        "Prometheus",
+        "Sentry",
+        "ElasticSearch"
+      ]
     },
     {
       "label": "GCP",
-      "items": ["Pub/Sub", "CloudSQL", "BigQuery", "GDC", "GKE", "Looker", "Dataform", "Dataflow", "Firebase", "CloudBuild", "Trace Explorer"]
+      "items": [
+        "PubSub",
+        "CloudSQL",
+        "BigQuery",
+        "GDC",
+        "GKE",
+        "Looker",
+        "Dataflow",
+        "Firebase",
+        "CloudBuild",
+        "Trace Explorer"
+      ]
     },
     {
       "label": "AWS",
-      "items": ["Kinesis", "Lambda", "CloudSearch", "Rekognition", "RDS", "S3", "SQS", "OpenSearch", "IAM", "CloudWatch", "CloudFront"]
+      "items": [
+        "Kinesis",
+        "Lambda",
+        "CloudSearch",
+        "Rekognition",
+        "RDS",
+        "EC2",
+        "S3",
+        "SQS",
+        "OpenSearch",
+        "IAM",
+        "CloudFront"
+      ]
     },
     {
       "label": "Other",
-      "items": ["Stripe", "Claude", "Codex", "Tidewave MCP", "Phoenix", "LiveView", "Terraform", "Kubernetes", "Bash", "Git", "Linux", "Regex"]
+      "items": [
+        "Claude",
+        "Codex",
+        "Tidewave MCP",
+        "Phoenix LiveView",
+        "Terraform",
+        "Kubernetes",
+        "Bash",
+        "Git",
+        "Regex"
+      ]
     }
   ],
   "education": [
@@ -136,7 +206,7 @@
   ],
   "patents": [
     {
-      "title": "Generating a Composite Listing for a Lodging Facility",
+      "title": "Generating a Composite Listing for Lodging",
       "number": "US-11783380-B1",
       "issued": "Oct 10, 2023",
       "url": "https://patents.google.com/patent/US11783380B1"

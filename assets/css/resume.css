@@ -1,6 +1,9 @@
 /*
  * All sizes are in rem so one root font-size scales the whole sheet:
  * a comfortable size on screen, a compact point size in print.
+ *
+ * The sheet has the proportions of a letter page (7.5in of text between 0.5in
+ * margins), and the content is written to fit it: most bullets fill one line.
  */
 
 @font-face {
@@ -32,7 +35,19 @@
   --control-border: #c4cad3;
   --shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 8px 24px rgb(0 0 0 / 8%);
 
-  font-size: 14.5px;
+  --sheet-text: 80.6rem;
+  --sheet-margin: 5.4rem;
+  --indent: clamp(1.75rem, 5.5vw, 5rem);
+
+  /* Type shrinks with the window, down to 12px, so the sheet keeps its shape. */
+  font-size: clamp(12px, 1.05vw, 14.5px);
+}
+
+/* Narrower than that, the type returns to full size and the text wraps. */
+@media screen and (max-width: 1140px) {
+  :root {
+    font-size: 14.5px;
+  }
 }
 
 /* Dark tokens are screen-only, so print always uses the light sheet. */
@@ -129,7 +144,7 @@ a:focus-visible {
   display: flex;
   justify-content: flex-end;
   gap: 0.6rem;
-  max-width: 8.5in;
+  max-width: calc(var(--sheet-text) + 2 * var(--sheet-margin));
   margin: 0 auto;
   padding: 1rem 0;
 }
@@ -176,9 +191,9 @@ a:focus-visible {
 /* Sheet */
 
 .page {
-  max-width: 8.5in;
+  max-width: calc(var(--sheet-text) + 2 * var(--sheet-margin));
   margin: 0 auto;
-  padding: clamp(1.25rem, 5vw, 0.6in);
+  padding: clamp(1.25rem, 6vw, var(--sheet-margin));
   background: var(--sheet);
   box-shadow: var(--shadow);
 }
@@ -195,7 +210,7 @@ a:focus-visible {
 
 h1 {
   color: var(--accent);
-  font-size: 2.7rem;
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.15;
 }
@@ -210,22 +225,21 @@ a.egg:focus-visible {
 }
 
 .headline {
-  color: var(--muted);
-  font-size: 1.65rem;
+  font-size: 2.05rem;
   font-weight: 300;
   line-height: 1.25;
 }
 
 .contact {
   color: var(--muted);
-  line-height: 1.35;
-  text-align: right;
+  font-size: 1.15rem;
+  line-height: 1.25;
 }
 
 h2 {
-  margin: 1.5rem 0 0.35rem;
+  margin: 2rem 0 0.2rem;
   color: var(--accent);
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.3;
 }
@@ -233,7 +247,7 @@ h2 {
 /* Experience */
 
 .employer {
-  margin-top: 0.9rem;
+  margin-top: 1.8rem;
 }
 
 h2 + .employer {
@@ -250,25 +264,26 @@ h2 + .employer {
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   font-weight: 600;
   line-height: 1.35;
 }
 
 h4 {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.15rem;
+  font-weight: 600;
   line-height: 1.4;
 }
 
 .dates {
   color: var(--muted);
-  font-size: 1.05rem;
   white-space: nowrap;
 }
 
 .employer-heading .dates {
   color: var(--text);
+  font-size: 1.45rem;
+  line-height: 1.35;
 }
 
 .dash {
@@ -296,29 +311,36 @@ h4 {
   font-style: italic;
 }
 
-.role {
-  margin-top: 0.45rem;
+.employer .blurb {
+  font-size: 0.78rem;
 }
 
-.roles {
-  margin: 0.2rem 0 0 0.15rem;
-  padding-left: 0.9rem;
-  border-left: 2px solid var(--accent-soft);
+.role {
+  margin-top: 0.35rem;
+}
+
+.role + .role {
+  margin-top: 0.75rem;
+}
+
+.summary,
+.highlights li {
+  text-wrap: pretty;
 }
 
 .highlights {
-  margin-top: 0.15rem;
+  margin-top: 0.1rem;
 }
 
 .highlights li {
   position: relative;
-  padding-left: 1.5em;
+  padding-left: var(--indent);
 }
 
 .highlights li::before {
   position: absolute;
   top: 0.58em;
-  left: 0.35em;
+  left: calc(var(--indent) * 0.55);
   width: 0.36em;
   height: 0.36em;
   background: var(--accent);
@@ -329,17 +351,42 @@ strong {
   font-weight: 600;
 }
 
-/* Education and patents */
+/* Technologies, beside a narrow column of education and patents */
 
-.columns {
+.technologies {
+  color: var(--muted);
+}
+
+.technologies .label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.credentials {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 2rem;
 }
 
+/* Print is named because a letter page is narrower than the breakpoint. */
+@media print, screen and (min-width: 900px) {
+  .columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 2rem;
+  }
+
+  .credentials {
+    display: block;
+  }
+
+  .credentials section + section h2 {
+    margin-top: 1.2rem;
+  }
+}
+
 .credential h3 {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .credential h3 a {
@@ -347,7 +394,7 @@ strong {
 }
 
 .credential p {
-  color: var(--muted);
+  font-size: 0.85rem;
 }
 
 /* Print dialog */
@@ -418,20 +465,23 @@ dialog input {
     font-size: 1.35rem;
   }
 
-  .contact {
-    text-align: left;
-  }
-
-  .columns {
+  .credentials {
     grid-template-columns: 1fr;
   }
 
   .dates {
     font-size: 0.95rem;
   }
+
+  .employer-heading .dates {
+    font-size: 1.1rem;
+  }
 }
 
-/* Print: US Letter, two pages at most. */
+/*
+ * Print: US Letter, a single page. 7.5in of text is 80.6rem at this size,
+ * the same measure as --sheet-text, so lines break as they do on a wide screen.
+ */
 
 @page {
   size: letter;
@@ -440,7 +490,8 @@ dialog input {
 
 @media print {
   :root {
-    font-size: 8.4pt;
+    --indent: 5rem;
+    font-size: 6.7pt;
   }
 
   body {
@@ -471,7 +522,15 @@ dialog input {
   }
 
   h2 {
-    margin-top: 1.1rem;
+    margin-top: 1.7rem;
+  }
+
+  .employer {
+    margin-top: 1.5rem;
+  }
+
+  .role + .role {
+    margin-top: 0.6rem;
   }
 
   h2,

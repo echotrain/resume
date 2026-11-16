@@ -39,10 +39,12 @@ defmodule Resume.Components do
             <h2>Experience</h2>
             <.employer :for={employer <- @resume.experience} employer={employer} />
           </section>
-          <.technologies groups={@resume.technologies} />
-          <div class="columns">
-            <.education entries={@resume.education} />
-            <.patents patents={@resume.patents} />
+          <div class="columns keep-together">
+            <.technologies groups={@resume.technologies} />
+            <div class="credentials">
+              <.education entries={@resume.education} />
+              <.patents patents={@resume.patents} />
+            </div>
           </div>
         </main>
         <.print_dialog />
@@ -178,9 +180,7 @@ defmodule Resume.Components do
         </p>
       </header>
       <p :if={@employer.blurb} class="blurb">{@employer.blurb}</p>
-      <div class="roles">
-        <.role :for={role <- @employer.roles} role={role} show_dates?={@show_role_dates?} />
-      </div>
+      <.role :for={role <- @employer.roles} role={role} show_dates?={@show_role_dates?} />
     </article>
     """
   end
@@ -223,10 +223,12 @@ defmodule Resume.Components do
 
   def technologies(assigns) do
     ~H"""
-    <section class="keep-together">
+    <section>
       <h2>Technologies</h2>
       <ul class="highlights technologies">
-        <li :for={group <- @groups}><strong>{group.label}:</strong> {Enum.join(group.items, ", ")}</li>
+        <li :for={group <- @groups}>
+          <span class="label">{group.label}:</span> {Enum.join(group.items, ", ")}
+        </li>
       </ul>
     </section>
     """
@@ -236,7 +238,7 @@ defmodule Resume.Components do
 
   def education(assigns) do
     ~H"""
-    <section class="keep-together">
+    <section>
       <h2>Education</h2>
       <div :for={entry <- @entries} class="credential">
         <h3>{entry.degree}</h3>
@@ -250,7 +252,7 @@ defmodule Resume.Components do
 
   def patents(assigns) do
     ~H"""
-    <section class="keep-together">
+    <section>
       <h2>Patents</h2>
       <div :for={patent <- @patents} class="credential">
         <h3>

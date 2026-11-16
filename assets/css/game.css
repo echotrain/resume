@@ -4,6 +4,25 @@
  * the snake and its food are the resume's blue square bullets.
  */
 
+/*
+ * The resume's sheet is as wide as a letter page, with type that scales to fit
+ * it. The game keeps a narrower sheet, fixed type and a smaller headline.
+ */
+:root {
+  --sheet-text: 48.3rem;
+  --sheet-margin: 4rem;
+}
+
+@media screen and (min-width: 641px) {
+  :root {
+    font-size: 14.5px;
+  }
+
+  .headline {
+    font-size: 1.65rem;
+  }
+}
+
 .game {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 18rem;
