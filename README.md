@@ -34,34 +34,33 @@ ___
 </br>
 <details>
 
-<summary><h1>&#127918; &#x1F40D; &#128377;&#65039;</h1></summary>
+<summary><h1>&#x1F3AE; &#x1F579;&#xFE0F; &#x1F47E;</h1></summary>
 
-### Easter Egg
+### Easter Egg - Retro Arcade
 
 Well, well, well - look at you finding my resume's hidden secret! 
 
-Clicking my name at the top of the resume opens `game/index.html`: a snake game drawn with the resume's blue square 
-bullet points. This mini game is fully contained within the same Mix app, all of which is running in browser via 
-[Popcorn](https://hexdocs.pm/popcorn/), a BEAM compiled to WebAssembly.
+Clicking my name at the top of the resume, or the joystick button below it, opens `arcade/index.html`. Its first game 
+is Snake, drawn with the resume's blue square bullet points. The arcade is fully contained within the same Mix app, all 
+of which is running in browser via [Popcorn](https://hexdocs.pm/popcorn/), a BEAM compiled to WebAssembly.
 
 | Path | Purpose |
 |---|---|
-| `lib/resume/game/snake.ex` | The rules, as pure functions over a struct. |
-| `lib/resume/game/server.ex` | A GenServer that owns the clock, takes input and pushes HTML to the page. |
-| `lib/resume/game/view.ex` | HEEx for the board, score, action button and BEAM console. |
-| `lib/resume/game/vm.ex` | The VM snapshot shown in the console. |
-| `assets/js/game.js` | Boots the VM, applies the HTML it sends, forwards keys, taps and swipes. |
-| `priv/game/coi-serviceworker.js` | Vendored from gzuidhof/coi-serviceworker (MIT). |
+| `lib/resume/arcade/snake.ex` | The rules of Snake, as pure functions over a struct. |
+| `lib/resume/arcade/server.ex` | A GenServer that owns the clock, takes input and pushes HTML to the page. |
+| `lib/resume/arcade/view.ex` | HEEx for the board, score, action button and BEAM console. |
+| `lib/resume/arcade/vm.ex` | The VM snapshot shown in the console. |
+| `assets/js/arcade.js` | Boots the VM, applies the HTML it sends, forwards keys, taps and swipes. |
+| `priv/arcade/coi-serviceworker.js` | Vendored from gzuidhof/coi-serviceworker (MIT). |
 
 ```sh
-MIX_ENV=prod mix site.build   # resume page + browser runtime in output/game/out
-MIX_ENV=prod mix popcorn.dev --dir output --out-dir output/game/out
-# then open http://localhost:4000/game/index.html
+MIX_ENV=prod mix site.build   # resume page + browser runtime in output/arcade/out
+MIX_ENV=prod mix popcorn.dev --dir output --out-dir output/arcade/out
+# then open http://localhost:4000/arcade/index.html
 ```
 
-> [!NOTE] 
 > The runtime needs cross-origin isolation headers, which GitHub Pages cannot send. The service worker adds them in the 
-> browser and reloads the page once on first visit. Its scope is the `game/` folder, so the resume page is unaffected. 
+> browser and reloads the page once on first visit. Its scope is the `arcade/` folder, so the resume page is unaffected. 
 > Opening the page as a local file does not work, because service workers need `http://localhost` or HTTPS.
 > 
 > Build with `MIX_ENV=prod`: Popcorn packages every compiled dependency found in the application build directory, 
