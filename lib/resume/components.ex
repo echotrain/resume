@@ -63,7 +63,7 @@ defmodule Resume.Components do
   end
 
   @doc """
-  The easter egg page, served from `game/`.
+  The arcade page, served from `arcade/`.
 
   It lives on its own page because the Elixir runtime needs cross-origin
   isolation. `coi-serviceworker.js` provides that on hosts that cannot send the
@@ -72,11 +72,11 @@ defmodule Resume.Components do
 
   This is only the static frame. The elements with the ids `board`, `hud`,
   `action` and `console` start empty and are filled in the browser by
-  `Resume.Game.View`, driven by `Resume.Game.Server`.
+  `Resume.Arcade.View`, driven by `Resume.Arcade.Server`.
   """
   attr :resume, Content, required: true
 
-  def game_page(assigns) do
+  def arcade_page(assigns) do
     ~H"""
     <!DOCTYPE html>
     <html lang="en">
@@ -86,7 +86,7 @@ defmodule Resume.Components do
         <meta name="robots" content="noindex" />
         <title>Bullet Points | {@resume.name}</title>
         <link rel="stylesheet" href="../assets/css/resume.css" />
-        <link rel="stylesheet" href="../assets/css/game.css" />
+        <link rel="stylesheet" href="../assets/css/arcade.css" />
         <script src="../assets/js/resume.js">
         </script>
         <script src="coi-serviceworker.js">
@@ -104,7 +104,7 @@ defmodule Resume.Components do
             </div>
             <div id="hud"></div>
           </header>
-          <div class="game">
+          <div class="arcade">
             <section class="play" aria-label="Game">
               <div id="board" class="board">
                 <p id="status" class="board-message">Starting the Elixir runtime…</p>
@@ -133,7 +133,7 @@ defmodule Resume.Components do
             </aside>
           </div>
         </main>
-        <script type="module" src="../assets/js/game.js">
+        <script type="module" src="../assets/js/arcade.js">
         </script>
       </body>
     </html>
@@ -146,7 +146,7 @@ defmodule Resume.Components do
     ~H"""
     <header class="masthead">
       <div>
-        <h1><a class="egg" href="game/index.html">{@resume.name}</a></h1>
+        <h1><a class="egg" href="arcade/index.html">{@resume.name}</a></h1>
         <p class="headline">{@resume.title}</p>
       </div>
       <ul class="contact">

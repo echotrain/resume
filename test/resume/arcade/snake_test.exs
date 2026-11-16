@@ -1,7 +1,7 @@
-defmodule Resume.Game.SnakeTest do
+defmodule Resume.Arcade.SnakeTest do
   use ExUnit.Case, async: true
 
-  alias Resume.Game.Snake
+  alias Resume.Arcade.Snake
 
   # An 8x8 board: the snake starts at {4, 4}, {3, 4}, {2, 4}, heading right.
   defp game(food \\ {0, 0}) do
@@ -14,7 +14,7 @@ defmodule Resume.Game.SnakeTest do
     Enum.reduce(directions, game, fn direction, game -> game |> Snake.turn(direction) |> Snake.tick() end)
   end
 
-  describe "Resume.Game.Snake.new/1" do
+  describe "Resume.Arcade.Snake.new/1" do
     test "waits to be started with a short snake in the middle and food on a free cell" do
       game = Snake.new(width: 8, height: 8)
 
@@ -24,7 +24,7 @@ defmodule Resume.Game.SnakeTest do
     end
   end
 
-  describe "Resume.Game.Snake.tick/2" do
+  describe "Resume.Arcade.Snake.tick/2" do
     test "moves the snake one cell in its direction" do
       assert Snake.tick(playing()).snake == [{5, 4}, {4, 4}, {3, 4}]
     end
@@ -69,7 +69,7 @@ defmodule Resume.Game.SnakeTest do
     end
   end
 
-  describe "Resume.Game.Snake.turn/2" do
+  describe "Resume.Arcade.Snake.turn/2" do
     test "ignores a turn that would reverse the snake onto itself" do
       assert Snake.turn(playing(), :left) == playing()
     end
@@ -85,7 +85,7 @@ defmodule Resume.Game.SnakeTest do
     end
   end
 
-  describe "Resume.Game.Snake.start/2" do
+  describe "Resume.Arcade.Snake.start/2" do
     test "deals a fresh game of the same size after game over" do
       over = %{playing() | status: :over, score: 9, snake: [{0, 0}]}
 
@@ -93,7 +93,7 @@ defmodule Resume.Game.SnakeTest do
     end
   end
 
-  describe "Resume.Game.Snake.toggle_pause/1" do
+  describe "Resume.Arcade.Snake.toggle_pause/1" do
     test "stops and resumes a running game" do
       paused = Snake.toggle_pause(playing())
 
@@ -103,7 +103,7 @@ defmodule Resume.Game.SnakeTest do
     end
   end
 
-  describe "Resume.Game.Snake.interval/1" do
+  describe "Resume.Arcade.Snake.interval/1" do
     test "shortens as the score climbs, down to a floor" do
       assert Snake.interval(%{game() | score: 0}) > Snake.interval(%{game() | score: 5})
       assert Snake.interval(%{game() | score: 50}) == Snake.interval(%{game() | score: 500})

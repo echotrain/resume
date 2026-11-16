@@ -1,16 +1,16 @@
-defmodule Resume.Game.View do
+defmodule Resume.Arcade.View do
   @moduledoc """
-  HEEx for the game page's live regions.
+  HEEx for the arcade page's live regions.
 
-  The static page (`Resume.Components.game_page/1`) has one empty element per
+  The static page (`Resume.Components.arcade_page/1`) has one empty element per
   region. `regions/1` renders each to an HTML string keyed by that element's id,
-  and `Resume.Game.Server` sends the browser whichever ones changed.
+  and `Resume.Arcade.Server` sends the browser whichever ones changed.
   """
 
   use Phoenix.Component
 
-  alias Resume.Game.Snake
-  alias Resume.Game.Vm
+  alias Resume.Arcade.Snake
+  alias Resume.Arcade.Vm
 
   @type regions :: %{String.t() => String.t()}
 

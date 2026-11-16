@@ -1,11 +1,11 @@
-defmodule Resume.Game.VmTest do
+defmodule Resume.Arcade.VmTest do
   use ExUnit.Case, async: true
 
-  doctest Resume.Game.Vm
+  doctest Resume.Arcade.Vm
 
-  alias Resume.Game.Vm
+  alias Resume.Arcade.Vm
 
-  describe "Resume.Game.Vm.snapshot/0" do
+  describe "Resume.Arcade.Vm.snapshot/0" do
     test "describes the VM it runs on" do
       snapshot = Vm.snapshot()
 

@@ -30,8 +30,8 @@ defmodule Resume.MixProject do
       check: ["format --check-formatted", "credo --strict --min-priority=higher", "test"],
       f: "format",
       # The full deployable site: the resume page plus the browser build of the
-      # easter egg. Run with MIX_ENV=prod so dev-only deps are not packaged.
-      "site.build": ["resume.build --copy", "popcorn.cook --out-dir output/game/out"],
+      # arcade. Run with MIX_ENV=prod so dev-only deps are not packaged.
+      "site.build": ["resume.build --copy", "popcorn.cook --out-dir output/arcade/out"],
       "test.html": "coveralls.html",
       "test.json": "coveralls.json"
     ]
@@ -58,7 +58,7 @@ defmodule Resume.MixProject do
       # Phoenix applications from being started, natively or in the browser.
       {:phoenix_live_view, "~> 1.2", runtime: false},
 
-      # Spike: runs Elixir in the browser on a BEAM compiled to WebAssembly.
+      # Runs the arcade in the browser, on a BEAM compiled to WebAssembly.
       {:popcorn, "~> 1.0"},
 
       # Dev/Test Only Deps

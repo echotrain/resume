@@ -1,6 +1,6 @@
 import Config
 
-# Browser packaging for the easter egg (`mix popcorn.cook`).
+# Browser packaging for the arcade (`mix popcorn.cook`).
 # Never put secrets here: the packaged config is readable in the browser.
 config :popcorn,
   app: :resume,

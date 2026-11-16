@@ -1,8 +1,8 @@
-defmodule Resume.Game.Snake do
+defmodule Resume.Arcade.Snake do
   @moduledoc """
-  The rules of the easter egg snake game, as pure functions over a struct.
+  The rules of Snake, the arcade's first game, as pure functions over a struct.
 
-  Nothing here touches the browser or a process: `Resume.Game.Server` owns the
+  Nothing here touches the browser or a process: `Resume.Arcade.Server` owns the
   clock and feeds this module turns and ticks.
   """
 

@@ -1,12 +1,12 @@
 /*
- * Styles for the easter egg page. It reuses resume.css for the sheet, the
- * colour tokens and Montserrat, so the game looks like part of the resume:
- * the snake and its food are the resume's blue square bullets.
+ * Styles for the arcade page. It reuses resume.css for the sheet, the colour
+ * tokens and Montserrat, so the arcade looks like part of the resume: Snake
+ * and its food are the resume's blue square bullets.
  */
 
 /*
  * The resume's sheet is as wide as a letter page, with type that scales to fit
- * it. The game keeps a narrower sheet, fixed type and a smaller headline.
+ * it. The arcade keeps a narrower sheet, fixed type and a smaller headline.
  */
 :root {
   --sheet-text: 48.3rem;
@@ -23,7 +23,7 @@
   }
 }
 
-.game {
+.arcade {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 18rem;
   gap: 2rem;
@@ -244,7 +244,7 @@
 }
 
 @media screen and (max-width: 760px) {
-  .game {
+  .arcade {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }

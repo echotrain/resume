@@ -1,6 +1,6 @@
 defmodule Resume.Application do
   @moduledoc """
-  Supervision tree for the easter egg, which runs in the browser on Popcorn.
+  Supervision tree for the arcade, which runs in the browser on Popcorn.
 
   Nothing here is needed to build the static site. Outside the browser Popcorn
   swaps its JavaScript bridge for a no-op, so starting the app natively (tests,
@@ -12,7 +12,7 @@ defmodule Resume.Application do
   @impl Application
   def start(_type, _args) do
     children = [
-      Resume.Game.Server
+      Resume.Arcade.Server
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Resume.Supervisor)

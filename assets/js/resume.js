@@ -1,5 +1,5 @@
 // Loaded in <head> without defer so the theme is applied before first paint.
-// The game page loads it too, for the theme only; it has no toggle or print dialog.
+// The arcade page loads it too, for the theme only; it has no toggle or print dialog.
 (function () {
   "use strict";
 

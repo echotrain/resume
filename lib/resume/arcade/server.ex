@@ -1,6 +1,6 @@
-defmodule Resume.Game.Server do
+defmodule Resume.Arcade.Server do
   @moduledoc """
-  Runs the snake game: owns the clock, takes input, and pushes HTML to the page.
+  Runs Snake in the arcade: owns the clock, takes input, and pushes HTML to the page.
 
   The page's JavaScript casts to this server by its registered name:
 
@@ -9,7 +9,7 @@ defmodule Resume.Game.Server do
     * `["turn", direction]` - `"up"`, `"down"`, `"left"` or `"right"`
 
   After each change the server renders the page's regions with
-  `Resume.Game.View` and sends only the ones whose HTML changed, as
+  `Resume.Arcade.View` and sends only the ones whose HTML changed, as
   `%{type: "render", regions: %{id => html}}`.
 
   Outside the browser Popcorn's JavaScript bridge is a no-op, so the server
@@ -19,9 +19,9 @@ defmodule Resume.Game.Server do
   use GenServer
 
   alias Popcorn.JS
-  alias Resume.Game.Snake
-  alias Resume.Game.View
-  alias Resume.Game.Vm
+  alias Resume.Arcade.Snake
+  alias Resume.Arcade.View
+  alias Resume.Arcade.Vm
 
   @directions %{"up" => :up, "down" => :down, "left" => :left, "right" => :right}
   @console_interval 1_000

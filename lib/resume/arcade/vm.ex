@@ -1,6 +1,6 @@
-defmodule Resume.Game.Vm do
+defmodule Resume.Arcade.Vm do
   @moduledoc """
-  A snapshot of the running BEAM, for the console panel beside the game.
+  A snapshot of the running BEAM, for the console panel beside the arcade's games.
 
   In the browser these numbers describe the WebAssembly VM on the visitor's
   device; natively they describe the local VM, which keeps this testable.
@@ -34,10 +34,10 @@ defmodule Resume.Game.Vm do
   @doc """
   Formats a byte count for display.
 
-      iex> Resume.Game.Vm.format_bytes(52_428_800)
+      iex> Resume.Arcade.Vm.format_bytes(52_428_800)
       "50.0 MB"
 
-      iex> Resume.Game.Vm.format_bytes(2_048)
+      iex> Resume.Arcade.Vm.format_bytes(2_048)
       "2.0 KB"
   """
   @spec format_bytes(non_neg_integer()) :: String.t()
@@ -47,10 +47,10 @@ defmodule Resume.Game.Vm do
   @doc """
   Formats a duration in milliseconds as minutes and seconds.
 
-      iex> Resume.Game.Vm.format_uptime(83_500)
+      iex> Resume.Arcade.Vm.format_uptime(83_500)
       "1m 23s"
 
-      iex> Resume.Game.Vm.format_uptime(9_200)
+      iex> Resume.Arcade.Vm.format_uptime(9_200)
       "9s"
   """
   @spec format_uptime(non_neg_integer()) :: String.t()

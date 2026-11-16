@@ -33,7 +33,7 @@ defmodule Resume do
   end
 
   @doc """
-  Writes the site to `output_dir`: `index.html` plus the assets it references.
+  Writes the site to `output_dir`: `index.html`, the arcade page under `arcade/`, and the assets they reference.
 
   ## Options
 
@@ -45,27 +45,27 @@ defmodule Resume do
   def build(output_dir \\ @default_output_dir, %Content{} = content \\ load!(), opts \\ []) do
     File.mkdir_p!(output_dir)
     File.write!(Path.join(output_dir, "index.html"), render(content))
-    write_game_page(Path.join(output_dir, "game"), content)
+    write_arcade_page(Path.join(output_dir, "arcade"), content)
     place_assets(Keyword.get(opts, :assets, :copy), Path.join(output_dir, "assets"))
   end
 
-  @doc "Renders the easter egg page to a complete HTML document."
-  @spec render_game(Content.t()) :: iodata()
-  def render_game(%Content{} = content) do
+  @doc "Renders the arcade page to a complete HTML document."
+  @spec render_arcade(Content.t()) :: iodata()
+  def render_arcade(%Content{} = content) do
     %{resume: content}
-    |> Components.game_page()
+    |> Components.arcade_page()
     |> Phoenix.HTML.Safe.to_iodata()
   end
 
   # The service worker must sit next to the page: its scope is its own directory.
-  # The Elixir runtime itself is added to `game/out` by `mix popcorn.cook`.
-  defp write_game_page(game_dir, content) do
-    File.mkdir_p!(game_dir)
-    File.write!(Path.join(game_dir, "index.html"), render_game(content))
-    File.cp!(service_worker_path(), Path.join(game_dir, "coi-serviceworker.js"))
+  # The Elixir runtime itself is added to `arcade/out` by `mix popcorn.cook`.
+  defp write_arcade_page(arcade_dir, content) do
+    File.mkdir_p!(arcade_dir)
+    File.write!(Path.join(arcade_dir, "index.html"), render_arcade(content))
+    File.cp!(service_worker_path(), Path.join(arcade_dir, "coi-serviceworker.js"))
   end
 
-  defp service_worker_path, do: Application.app_dir(:resume, "priv/game/coi-serviceworker.js")
+  defp service_worker_path, do: Application.app_dir(:resume, "priv/arcade/coi-serviceworker.js")
 
   # The old target is removed first: copying into a leftover symlink would
   # write the assets onto themselves. `rm_rf!` removes a link, not its target.

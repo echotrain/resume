@@ -1,8 +1,8 @@
-defmodule Resume.Game.ServerTest do
+defmodule Resume.Arcade.ServerTest do
   use ExUnit.Case, async: true
 
-  alias Resume.Game.Server
-  alias Resume.Game.Snake
+  alias Resume.Arcade.Server
+  alias Resume.Arcade.Snake
 
   # Food sits directly ahead of the starting snake, so the first tick eats it.
   setup %{test: test} do
@@ -14,7 +14,7 @@ defmodule Resume.Game.ServerTest do
 
   defp state(server), do: :sys.get_state(server)
 
-  describe "Resume.Game.Server.handle_cast/2" do
+  describe "Resume.Arcade.Server.handle_cast/2" do
     test "renders every region when the page mounts", %{server: server} do
       GenServer.cast(server, "mount")
 
@@ -51,7 +51,7 @@ defmodule Resume.Game.ServerTest do
     end
   end
 
-  describe "Resume.Game.Server.handle_info/2" do
+  describe "Resume.Arcade.Server.handle_info/2" do
     test "advances the game on a tick and keeps the best score", %{server: server} do
       GenServer.cast(server, "action")
       send(server, :tick)

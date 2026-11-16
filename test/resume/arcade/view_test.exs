@@ -1,9 +1,9 @@
-defmodule Resume.Game.ViewTest do
+defmodule Resume.Arcade.ViewTest do
   use ExUnit.Case, async: true
 
-  alias Resume.Game.Snake
-  alias Resume.Game.View
-  alias Resume.Game.Vm
+  alias Resume.Arcade.Snake
+  alias Resume.Arcade.View
+  alias Resume.Arcade.Vm
 
   defp assigns(game, overrides \\ %{}) do
     Map.merge(
@@ -22,7 +22,7 @@ defmodule Resume.Game.ViewTest do
     %{Snake.new(width: 8, height: 8, pick: fn _free -> {0, 0} end) | status: status}
   end
 
-  describe "Resume.Game.View.regions/1" do
+  describe "Resume.Arcade.View.regions/1" do
     test "places the snake and the food on the grid by row and column" do
       %{"board" => board} = View.regions(assigns(game(:playing)))
 

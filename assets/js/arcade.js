@@ -1,12 +1,12 @@
-// The browser side of the easter egg. All game logic and rendering is Elixir
-// (lib/resume/game); this file only boots the VM, puts the HTML it sends onto
+// The browser side of the arcade. All game logic and rendering is Elixir
+// (lib/resume/arcade); this file only boots the VM, puts the HTML it sends onto
 // the page, and forwards keys, taps and swipes to the game server.
 //
 // The runtime needs cross-origin isolation. On first visit coi-serviceworker.js
 // registers itself and reloads the page once to switch it on, so "not isolated"
 // is only reported as a failure if it is still true after a short wait.
 
-const SERVER = "Elixir.Resume.Game.Server";
+const SERVER = "Elixir.Resume.Arcade.Server";
 const ISOLATION_GRACE_MS = 4000;
 const FIRST_RENDER_GRACE_MS = 5000;
 const SWIPE_MIN_PX = 24;
@@ -105,7 +105,7 @@ function connectInput(popcorn) {
 
 async function boot() {
   const started = performance.now();
-  const { Popcorn } = await import("../../game/out/index.mjs");
+  const { Popcorn } = await import("../../arcade/out/index.mjs");
 
   const popcorn = await Popcorn.init({
     onEvent: applyRender,
