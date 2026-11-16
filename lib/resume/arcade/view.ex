@@ -142,7 +142,7 @@ defmodule Resume.Arcade.View do
 
   defp cell_style({x, y}), do: "grid-area: #{y + 1} / #{x + 1}"
 
-  defp overlay(%Snake{status: :ready}), do: %{title: "Bullet Points", hint: "Press start, then steer."}
+  defp overlay(%Snake{status: :ready}), do: %{title: "Snake", hint: "Press start, then steer."}
   defp overlay(%Snake{status: :paused}), do: %{title: "Paused", hint: "Press resume to carry on."}
   defp overlay(%Snake{status: :over, score: score}), do: %{title: "Game over", hint: "You scored #{score}."}
   defp overlay(%Snake{status: :playing}), do: nil

@@ -30,6 +30,11 @@
   margin-top: 1.5rem;
 }
 
+/* Each column opens with a heading: the game's name, and the console's. */
+.arcade h2 {
+  margin: 0 0 0.5rem;
+}
+
 /* Score */
 
 .hud {
@@ -191,10 +196,6 @@
 }
 
 /* BEAM console */
-
-.beam h2 {
-  margin-top: 0;
-}
 
 .beam h3 {
   margin-top: 1rem;

@@ -35,13 +35,13 @@ defmodule Resume.Arcade.ViewTest do
 
     test "explains each stopped state over the board and on the action button" do
       for {status, title, label} <- [
-            {:ready, "Bullet Points", "Start"},
+            {:ready, "Snake", "Start"},
             {:paused, "Paused", "Resume"},
             {:over, "Game over", "Play again"}
           ] do
         regions = View.regions(assigns(game(status)))
 
-        assert regions["board"] =~ title
+        assert regions["board"] =~ "<strong>#{title}</strong>"
         assert regions["action"] =~ label
       end
     end

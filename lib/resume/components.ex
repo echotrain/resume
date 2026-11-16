@@ -63,7 +63,7 @@ defmodule Resume.Components do
   end
 
   @doc """
-  The arcade page, served from `arcade/`.
+  The arcade page, served from `arcade/`. Snake is its first game.
 
   It lives on its own page because the Elixir runtime needs cross-origin
   isolation. `coi-serviceworker.js` provides that on hosts that cannot send the
@@ -84,7 +84,7 @@ defmodule Resume.Components do
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="noindex" />
-        <title>Bullet Points | {@resume.name}</title>
+        <title>Arcade | {@resume.name}</title>
         <link rel="stylesheet" href="../assets/css/resume.css" />
         <link rel="stylesheet" href="../assets/css/arcade.css" />
         <script src="../assets/js/resume.js">
@@ -99,13 +99,14 @@ defmodule Resume.Components do
         <main class="page">
           <header class="masthead">
             <div>
-              <h1>Bullet Points</h1>
-              <p class="headline">A snake game in Elixir, running in your browser</p>
+              <h1>Arcade</h1>
+              <p class="headline">Games in Elixir, running in your browser</p>
             </div>
             <div id="hud"></div>
           </header>
           <div class="arcade">
-            <section class="play" aria-label="Game">
+            <section class="play" aria-labelledby="game-title">
+              <h2 id="game-title">Snake</h2>
               <div id="board" class="board">
                 <p id="status" class="board-message">Starting the Elixir runtime…</p>
               </div>
@@ -127,7 +128,7 @@ defmodule Resume.Components do
             <aside class="beam" aria-label="BEAM console">
               <h2>BEAM console</h2>
               <p class="blurb">
-                Live from the Erlang VM running this game on your device, compiled to WebAssembly.
+                Live from the Erlang VM running the arcade on your device, compiled to WebAssembly.
               </p>
               <div id="console"></div>
             </aside>
